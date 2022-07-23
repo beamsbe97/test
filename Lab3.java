@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 class Lab3
 {
+	//This is actual code that wilkl break the project
     static Scanner input = new Scanner(System.in);
     public static void main (String [ ] args)
     {
@@ -12,21 +13,33 @@ class Lab3
 
 class PetrolPurchase
 {
-    private String station;      
+    private String station;   
+    private double quantity;   
     private String type;
-    private double quantity;
     private double price;
     private int discount;
-        
-    public static void PetrolPurchase (String s, double q, String t, double p, int d)
+
+    //Default constructor
+    public void PetrolPurchase()
+    {
+
+    }
+    //Constructors
+    public void PetrolPurchase (String s, double q, String t, double p, int d)
     {
         this.station = s;
         this.quantity = q;
         this.type = t;
         this.price = p;
         this.discount = d;
+
     }
 
+    //Copy constructor
+    public void PetrolPurchase(PetrolPurchase pp)
+    {
+        this(pp.station);
+    }
     //Accessor methods
     public String getStation()
     {
@@ -91,11 +104,13 @@ class PetrolPurchase
     private double computePayment()
     {
         double payment = price * quantity;
+        return payment;
     }
     
     public double getPayment()
     {
-        return payment;
+        double netsAmount = getPayment();
+        return netsAmount;
     }
 
     public void printInfo()
@@ -104,7 +119,8 @@ class PetrolPurchase
         System.out.printf("Station: %s", getStation());
         System.out.printf("Total liter: %f", getQuantity());
         System.out.printf("Petrol type: %s", getType());
-        System.out.printf("Price per liter: %f")
+        System.out.printf("Price per liter: %f", getQuantity());
+        System.out.printf("Actual cost: %f", get)
     }
 } 
 
