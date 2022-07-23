@@ -1,36 +1,9 @@
 import java.util.Scanner;
 
-class Lab3
-{
-	//This is actual code that wilkl break the project
-    static Scanner input = new Scanner(System.in);
-    public static void main (String [ ] args)
-    {
-        String station;   
-        double quantity;   
-        String type;
-        double price;
-        int discount;
-        //Read user's input
-        System.out.print("Enter the station:");
-        station = nextLine();
-        System.out.print("Enter quantity in liter:");
-        quantity = nextLine();
-        System.out.print("Enter type of petrol:");
-        type = nextLine();
-        System.out.print("Enter discount:");
-        discount = nextLine(); 
-
-        PetrolPurchase pp = new PetrolPurchase(station,quantity,type,discount);
-        s.computePayment();
-        s.getPayment();
-        s.printInfo();
-    }
-
-}  
 
 class PetrolPurchase
 {
+    // Declare variables
     private String station;   
     private double quantity;   
     private String type;
@@ -40,9 +13,9 @@ class PetrolPurchase
     //Default constructor
     public PetrolPurchase()
     {
-
     }
-    //Constructors
+
+    //Other Constructor
     public PetrolPurchase (String s, double q, String t, double p, int d)
     {
         this.station = s;
@@ -120,38 +93,93 @@ class PetrolPurchase
         this.discount = d;
     }
 
+    //This method calculates the amount for payment
     private double computePayment()
     {
         double payment = price * quantity;
         return payment;
     }
     
+    //This method calculates the discount amount to be displayed in the summary
+    public double calculateDiscount()
+    {
+        double discount = getDiscount();
+        double payment = computePayment();
+        double discountAmount = (payment/100)*discount;
+        return discountAmount;
+    }
+
+    //This method calculates the nets amount after discount
     public double getPayment()
     {
-        double payment = getPayment();
-        double netsAmount = payment *(1 - discount/100);
+        double payment = computePayment();
+        double discountAmount = calculateDiscount();
+        double netsAmount = payment - discountAmount;
         return netsAmount;
     }
 
+    //This methods prints out the purchase summary
     public void printInfo()
     {
-        System.out.printf("Summary of your purchase");
-        System.out.printf("Station: %s", getStation());
-        System.out.printf("Total liter: %f", getQuantity());
-        System.out.printf("Petrol type: %s", getType());
-        System.out.printf("Price per liter: %f", getQuantity());
-        System.out.printf("Actual cost: %f", computePayment());
-        System.out.printf("Discount: %d", getDiscount());
-        System.out.printf("Amount  to pay: %f", getPayment());
+
+        System.out.printf("\nSummary of your purchase%n");
+        System.out.printf("Station: %s%n", getStation());
+        System.out.printf("Total liter: %.2f%n", getQuantity());
+        System.out.printf("Petrol type: %s%n", getType());
+        System.out.printf("Price per liter: %.2f%n", getQuantity());
+        System.out.printf("Actual cost: %.2f%n", computePayment());
+        System.out.printf("Discount (%d%%): %.2f%n", getDiscount(),calculateDiscount());
+        System.out.printf("Amount  to pay: %.2f%n", getPayment());
     }
 } 
 
+class Lab3
+{
+    static Scanner input = new Scanner(System.in);
+    public static void main (String [ ] args)
+    {
+        //Declare variables
+        String station;   
+        double quantity;   
+        String type;
+        double price;
+        int discount;
+        double addQty;
 
-/* System.out.print("Enter the station:");
-station = nextLine();
-System.out.print("Enter quantity in liter:");
-quantity = nextLine();
-System.out.print("Enter type of petrol:");
-type = nextLine();
-System.out.print("Enter discount:");
-discount = nextLine(); */ 
+        //Read user's input
+        System.out.print("Enter the station: ");
+        station = input.nextLine();
+        System.out.print("Enter quantity in liter: ");
+        quantity = input.nextDouble();
+        input.nextLine();
+        System.out.print("Enter type of petrol: ");
+        type = input.nextLine();
+        System.out.print("Enter price of petrol: ");
+        price = input.nextDouble();
+        System.out.print("Enter discount: ");
+        discount = input.nextInt(); 
+        input.nextLine();
+
+        //Construct a PetrolPurchase object and display the purchase information
+        PetrolPurchase pp1 = new PetrolPurchase(station,quantity,type,price,discount);
+        pp1.printInfo();
+
+        //Prompt user to input additional petrol quantity
+        System.out.print("\nEnter additional quantity of petrol: ");
+        addQty = input.nextDouble();
+        quantity = quantity + addQty;
+
+        //Construct new purchase with updated info and print out the purchase
+        PetrolPurchase pp2 = new PetrolPurchase(station,quantity,type,price,discount);
+        System.out.print("\nYour new purchased price");
+        pp2.printInfo();
+
+        //Duplicate copy for the customer
+        System.out.print("\nDuplicate the same object");
+        PetrolPurchase pp3 = new PetrolPurchase(pp2);
+        pp3.printInfo();
+    }
+
+}  
+
+
