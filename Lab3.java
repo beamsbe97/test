@@ -6,7 +6,25 @@ class Lab3
     static Scanner input = new Scanner(System.in);
     public static void main (String [ ] args)
     {
+        String station;   
+        double quantity;   
+        String type;
+        double price;
+        int discount;
+        //Read user's input
+        System.out.print("Enter the station:");
+        station = nextLine();
+        System.out.print("Enter quantity in liter:");
+        quantity = nextLine();
+        System.out.print("Enter type of petrol:");
+        type = nextLine();
+        System.out.print("Enter discount:");
+        discount = nextLine(); 
 
+        PetrolPurchase pp = new PetrolPurchase(station,quantity,type,discount);
+        s.computePayment();
+        s.getPayment();
+        s.printInfo();
     }
 
 }  
@@ -20,12 +38,12 @@ class PetrolPurchase
     private int discount;
 
     //Default constructor
-    public void PetrolPurchase()
+    public PetrolPurchase()
     {
 
     }
     //Constructors
-    public void PetrolPurchase (String s, double q, String t, double p, int d)
+    public PetrolPurchase (String s, double q, String t, double p, int d)
     {
         this.station = s;
         this.quantity = q;
@@ -36,10 +54,11 @@ class PetrolPurchase
     }
 
     //Copy constructor
-    public void PetrolPurchase(PetrolPurchase pp)
+    public PetrolPurchase(PetrolPurchase pp)
     {
-        this(pp.station);
+        this(pp.station, pp.quantity, pp.type, pp.price, pp.discount);
     }
+
     //Accessor methods
     public String getStation()
     {
@@ -109,7 +128,8 @@ class PetrolPurchase
     
     public double getPayment()
     {
-        double netsAmount = getPayment();
+        double payment = getPayment();
+        double netsAmount = payment *(1 - discount/100);
         return netsAmount;
     }
 
@@ -120,7 +140,9 @@ class PetrolPurchase
         System.out.printf("Total liter: %f", getQuantity());
         System.out.printf("Petrol type: %s", getType());
         System.out.printf("Price per liter: %f", getQuantity());
-        System.out.printf("Actual cost: %f", get)
+        System.out.printf("Actual cost: %f", computePayment());
+        System.out.printf("Discount: %d", getDiscount());
+        System.out.printf("Amount  to pay: %f", getPayment());
     }
 } 
 
