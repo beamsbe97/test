@@ -100,7 +100,11 @@ class PetrolPurchase
 
     public void printInfo()
     {
-        System.out.printf("")
+        System.out.printf("Summary of your purchase");
+        System.out.printf("Station: %s", getStation());
+        System.out.printf("Total liter: %f", getQuantity());
+        System.out.printf("Petrol type: %s", getType());
+        System.out.printf("Price per liter: %f")
     }
 } 
 
