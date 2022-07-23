@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 class PetrolPurchase
 {
     // Declare variables
@@ -121,7 +120,6 @@ class PetrolPurchase
     //This methods prints out the purchase summary
     public void printInfo()
     {
-
         System.out.printf("\nSummary of your purchase%n");
         System.out.printf("Station: %s%n", getStation());
         System.out.printf("Total liter: %.2f%n", getQuantity());
