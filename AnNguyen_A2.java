@@ -96,11 +96,31 @@ class HealthProfile
         this.currentYear = currentYear;
     }
 
-    //this method calculate age based on DOB and current year
+    //this method calculate age based on DOB and current year ****NOT DONE YET****************
     public int getAge()
     {
         age = currentYear - Date.getYear();
         return age;
+    }//************************************************************************************************
+
+    private int getMaximumHeartRate()
+    {
+        return maximumHeartRate;
+    }
+
+    private double getMinimumTargetHeartRate()
+    {
+
+    }
+
+    private double getMaximumTargetHeartRate()
+    {
+
+    }
+
+    private double getBMI()
+    {
+
     }
 }
 
