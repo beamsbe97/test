@@ -105,22 +105,24 @@ class HealthProfile
 
     private int getMaximumHeartRate()
     {
-        return maximumHeartRate;
+        maximumHeartRate = //************** */
     }
 
     private double getMinimumTargetHeartRate()
     {
-
+        double minimumTargetHeartRate = (getMaximumHeartRate()/100) * 50;
+        return minimumTargetHeartRate;
     }
 
     private double getMaximumTargetHeartRate()
     {
-
+       double maximumTargetHeartRate = (getMaximumHeartRate()/100) * 85;
+       return maximumTargetHeartRate;
     }
 
     private double getBMI()
     {
-
+        
     }
 }
 
