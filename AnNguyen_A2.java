@@ -11,20 +11,23 @@ class AnNguyen_A2
         //Construct a Scanner class object
         Scanner input = new Scanner (new File ("input.txt"));
         
-        String firstName;
-        String lastName;
-        DOB dob;
+        //Initialise patient 1
+        HealthProfile hp = new HealthProfile();
 
-        firstName = input.nextLine ();
-        lastName = input.nextLine ();
+        firstName = input.nextLine();
+        lastName = input.nextLine();
         dob = input.nextLine();
 
         //Patient 1
+        HealthProfile hp1 = new HealthProfile(input.nextLine(), input.nextLine(), input.nextLine(),
+                                                input.nextLine(), input.nextLine(), input.nextLine());
+
         HealthProfile hp1 = new HealthProfile();
+
+        System.out.printf("First patient%n");
+        System.out.printf("-------------");
+        hp1.printInfo();
         
-
-
-
 
     }
 
@@ -158,12 +161,24 @@ class HealthProfile
     //Display patient info
     public void printInfo()
     {
-        System.out.printf("Name: %s%n",);
-        System.out.printf("Date of birth:");
-        System.out.printf("Your ");
-        System.out.printf("");
-
-
+        System.out.printf("\nName: %s, %s%n", firstName, lastName);
+        System.out.printf("Date of birth: %s%n", dob);
+        System.out.printf("Your weight: %f%n", weight);
+        System.out.printf("Your height: %f%n", h);
+        System.out.printf("Current year: %d%n", currentYear);
+        System.out.printf("Your age: %d years old%n", getAge());
+        System.out.printf("Clinic analysis, based on your age:%n");
+        System.out.printf("\t1. Your maximum heart rate is %d%n", getMaximumHeartRate());
+        System.out.printf("\t2. Your minimum target heart rate is %.2f%n", getMinimumTargetHeartRate());
+        System.out.printf("\t3. Your maximum target heart rate is %.2f%n", getMaximumTargetHeartRate());
+        System.out.printf("Your BMI: %.1f%n", getBMI());
+        System.out.println("Weight category          Range");
+        System.out.println("Underweight / too low    Below 18.5");
+        System.out.println("Healthy range            18.5 - 25");
+        System.out.println("Overweight               25 - 30");
+        System.out.println("Obese                    30 - 35");
+        System.out.println("Severe Obesity           35 - 40");
+        System.out.println("Morbid Obesity           Over 40");
     }
 }
 
