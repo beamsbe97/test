@@ -1,10 +1,30 @@
 import java.util.Scanner;
+import java.util.zip.GZIPOutputStream;
+import java.io.File;
+import java.io.IOException;
 
 enum Month{Jab, Feb, Mar, Apr, May , Jun, Jul, Aug, Sep, Oct, Nov, Dec}
 class AnNguyen_A2
 {
     public static void main (String [ ] args)
     {
+        //Construct a Scanner class object
+        Scanner input = new Scanner (new File ("input.txt"));
+        
+        String firstName;
+        String lastName;
+        DOB dob;
+
+        firstName = input.nextLine ();
+        lastName = input.nextLine ();
+        dob = input.nextLine();
+
+        //Patient 1
+        HealthProfile hp1 = new HealthProfile();
+        
+
+
+
 
     }
 
@@ -20,7 +40,12 @@ class HealthProfile
     private int currentYear;
 
     //Default constructor
-    public HealthProfile(){}
+    public HealthProfile()
+    {
+        //Initialise dob and h
+        dob = new Date(); 
+        h = new Height();
+    }
 
     //Other constructor
     public HealthProfile(String firstName, String lastName, Date dob, 
@@ -96,16 +121,18 @@ class HealthProfile
         this.currentYear = currentYear;
     }
 
-    //this method calculate age based on DOB and current year ****NOT DONE YET****************
+    //This method caculates the age of the patient
     public int getAge()
     {
-        age = currentYear - Date.getYear();
+        int age = currentYear - dob.getYear();
         return age;
-    }//************************************************************************************************
+    }
 
+    //This methods calculates the maximum heart rate
     private int getMaximumHeartRate()
     {
-        maximumHeartRate = //************** */
+        int maximumHeartRate = 220 - getAge();
+        return maximumHeartRate;
     }
 
     private double getMinimumTargetHeartRate()
@@ -120,9 +147,23 @@ class HealthProfile
        return maximumTargetHeartRate;
     }
 
+    //Calculate BMI
     private double getBMI()
     {
-        
+        double height = h.getHeightInMeter(); //acquire height value in meter
+        double bmi = weight/(height * height); //calculate BMI
+        return bmi;
+    }
+
+    //Display patient info
+    public void printInfo()
+    {
+        System.out.printf("Name: %s%n",);
+        System.out.printf("Date of birth:");
+        System.out.printf("Your ");
+        System.out.printf("");
+
+
     }
 }
 
@@ -221,9 +262,9 @@ class Height
     }
 
     //convert height to meter
-    public getHeightInMeter()
+    public double getHeightInMeter()
     {
-        heightInMeter = feet*0.3048 + inches*0.0254;
+        double heightInMeter = feet*0.3048 + inches*0.0254;
         return heightInMeter;
     }
 }
