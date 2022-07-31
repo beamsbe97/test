@@ -1,3 +1,9 @@
+// Objective: My Assignment 2
+// Name: An Nguyen
+// Student number: 10242357
+// File name: AnNguyen_A2.java
+// Declaration: this is my own lab and I have not passed my lab to anyone in this class
+
 import java.util.Scanner;
 import java.util.zip.GZIPOutputStream;
 import java.io.File;
@@ -6,28 +12,43 @@ import java.io.IOException;
 enum Month{Jab, Feb, Mar, Apr, May , Jun, Jul, Aug, Sep, Oct, Nov, Dec}
 class AnNguyen_A2
 {
-    public static void main (String [ ] args)
+    public static void main (String [ ] args) throws IOException
     {
         //Construct a Scanner class object
         Scanner input = new Scanner (new File ("input.txt"));
         
-        //Initialise patient 1
-        HealthProfile hp = new HealthProfile();
+        //Patient 1 ------------------------------------------------------------
+        String firstName1 = input.nextLine();
+        String lastName1 = input.nextLine();
+        Date dob1 = new Date(input.nextInt(), Month.valueOf(input.next()), input.nextInt());
+        Height h1 = new Height(input.nextInt(), input.nextInt());
+        double weight1 = input.nextDouble();
+        int currentYear1 = input.nextInt();
 
-        firstName = input.nextLine();
-        lastName = input.nextLine();
-        dob = input.nextLine();
+        //Initiate patient 1's health profile
+        HealthProfile hp1 = new HealthProfile(firstName1, lastName1, dob1, h1, weight1, currentYear1);
 
-        //Patient 1
-        HealthProfile hp1 = new HealthProfile(input.nextLine(), input.nextLine(), input.nextLine(),
-                                                input.nextLine(), input.nextLine(), input.nextLine());
-
-        HealthProfile hp1 = new HealthProfile();
-
+        //Display patient 1's info
         System.out.printf("First patient%n");
         System.out.printf("-------------");
-        hp1.printInfo();
-        
+        hp1.printInfo(); 
+
+        //Patient 2 ------------------------------------------------------------
+        input.nextLine();
+        String firstName2 = input.nextLine();
+        String lastName2 = input.nextLine();
+        Date dob2 = new Date(input.nextInt(), Month.valueOf(input.next()), input.nextInt());
+        Height h2 = new Height(input.nextInt(), input.nextInt());
+        double weight2 = input.nextDouble();
+        int currentYear2 = input.nextInt();
+                              
+        //Initiate patient 2's health profile
+        HealthProfile hp2 = new HealthProfile(firstName2, lastName2, dob2, h2, weight2, currentYear2);
+
+        //Display patient 2's info
+        System.out.printf("\nSecond patient%n");
+        System.out.printf("--------------");
+        hp2.printInfo();
 
     }
 
@@ -35,6 +56,7 @@ class AnNguyen_A2
 
 class HealthProfile
 {
+    //Declare variables
     private String firstName;
     private String lastName;
     private Date dob;
@@ -59,9 +81,10 @@ class HealthProfile
         this.dob = dob;
         this.h = h;
         this.weight = weight;
-        this.currenYear = currentYear;
+        this.currentYear = currentYear;
     }
 
+    //Copy constructor
     public HealthProfile(HealthProfile hp)
     {
         this(hp.firstName, hp.lastName, hp.dob, hp.h, hp.weight, hp.currentYear);
@@ -131,22 +154,24 @@ class HealthProfile
         return age;
     }
 
-    //This methods calculates the maximum heart rate
+    //This method calculates the maximum heart rate
     private int getMaximumHeartRate()
     {
         int maximumHeartRate = 220 - getAge();
         return maximumHeartRate;
     }
 
+    //This method calculates the minimum heart rate
     private double getMinimumTargetHeartRate()
     {
-        double minimumTargetHeartRate = (getMaximumHeartRate()/100) * 50;
+        double minimumTargetHeartRate = (getMaximumHeartRate()/100.00) * 50;
         return minimumTargetHeartRate;
     }
 
+    //This method calculates the maximum heart rate
     private double getMaximumTargetHeartRate()
     {
-       double maximumTargetHeartRate = (getMaximumHeartRate()/100) * 85;
+       double maximumTargetHeartRate = (getMaximumHeartRate()/100.00) * 85;
        return maximumTargetHeartRate;
     }
 
@@ -162,9 +187,9 @@ class HealthProfile
     public void printInfo()
     {
         System.out.printf("\nName: %s, %s%n", firstName, lastName);
-        System.out.printf("Date of birth: %s%n", dob);
-        System.out.printf("Your weight: %f%n", weight);
-        System.out.printf("Your height: %f%n", h);
+        System.out.printf("Date of birth: %d %s %d%n", dob.getDay(), dob.getMonth(), dob.getYear());
+        System.out.printf("Your weight: %.1f kg%n", weight);
+        System.out.printf("Your height: %d feet %d inches; equivalent to: %.2f meter%n", h.getFeet(), h.getInches(), h.getHeightInMeter());
         System.out.printf("Current year: %d%n", currentYear);
         System.out.printf("Your age: %d years old%n", getAge());
         System.out.printf("Clinic analysis, based on your age:%n");
@@ -172,18 +197,19 @@ class HealthProfile
         System.out.printf("\t2. Your minimum target heart rate is %.2f%n", getMinimumTargetHeartRate());
         System.out.printf("\t3. Your maximum target heart rate is %.2f%n", getMaximumTargetHeartRate());
         System.out.printf("Your BMI: %.1f%n", getBMI());
-        System.out.println("Weight category          Range");
-        System.out.println("Underweight / too low    Below 18.5");
-        System.out.println("Healthy range            18.5 - 25");
-        System.out.println("Overweight               25 - 30");
-        System.out.println("Obese                    30 - 35");
-        System.out.println("Severe Obesity           35 - 40");
-        System.out.println("Morbid Obesity           Over 40");
+        System.out.println("\tWeight category          Range");
+        System.out.println("\tUnderweight / too low    Below 18.5");
+        System.out.println("\tHealthy range            18.5 - 25");
+        System.out.println("\tOverweight               25 - 30");
+        System.out.println("\tObese                    30 - 35");
+        System.out.println("\tSevere Obesity           35 - 40");
+        System.out.println("\tMorbid Obesity           Over 40");
     }
 }
 
 class Date
 {
+    //Declare variables
     private int day;
     private Month month;
     private int year;
