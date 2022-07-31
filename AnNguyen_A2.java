@@ -17,7 +17,8 @@ class AnNguyen_A2
         //Construct a Scanner class object
         Scanner input = new Scanner (new File ("input.txt"));
         
-        //Patient 1 ------------------------------------------------------------
+        //Patient 1 ----------------------------------------------------------------
+        //Read in patient 1's info
         String firstName1 = input.nextLine();
         String lastName1 = input.nextLine();
         Date dob1 = new Date(input.nextInt(), Month.valueOf(input.next()), input.nextInt());
@@ -25,7 +26,7 @@ class AnNguyen_A2
         double weight1 = input.nextDouble();
         int currentYear1 = input.nextInt();
 
-        //Initiate patient 1's health profile
+        //Initiate patient 1's health profile with the acquired info
         HealthProfile hp1 = new HealthProfile(firstName1, lastName1, dob1, h1, weight1, currentYear1);
 
         //Display patient 1's info
@@ -33,7 +34,8 @@ class AnNguyen_A2
         System.out.printf("-------------");
         hp1.printInfo(); 
 
-        //Patient 2 ------------------------------------------------------------
+        //Patient 2 ----------------------------------------------------------------
+        //Read in patient 2's info
         input.nextLine();
         String firstName2 = input.nextLine();
         String lastName2 = input.nextLine();
@@ -42,7 +44,7 @@ class AnNguyen_A2
         double weight2 = input.nextDouble();
         int currentYear2 = input.nextInt();
                               
-        //Initiate patient 2's health profile
+        //Initiate patient 2's health profile with the acquired info
         HealthProfile hp2 = new HealthProfile(firstName2, lastName2, dob2, h2, weight2, currentYear2);
 
         //Display patient 2's info
