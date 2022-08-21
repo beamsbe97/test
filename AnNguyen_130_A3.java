@@ -6,7 +6,8 @@ import java.util.Random;
 class AnNguyen_130_A3
 {
     private final static String[] Countries = {"China", "Thailand", "British Columbia", "South Korea", "Japan", 
-                                        "USA", "Australia", "Venezuela", "Russia", "Brazil"};
+                                               "USA", "Australia", "Venezuela", "Russia", "Brazil"};
+    //private final static String[] Countries =  new String [10];
     private final String[] Titles = {"Interview event", "Swimsuit competition event", "Evening gown competition event"};
 
     private static Random rand = new Random();
@@ -15,10 +16,10 @@ class AnNguyen_130_A3
 
     }
 
-    /*private static String getCountry(ArrayList<MissWorld> alist, double result)
+    private static String getCountry(ArrayList<MissWorld> alist, double result)
     {
 
-    }*/
+    }
 
     private static void displaySortedList(ArrayList<MissWorld> alist, String event)
     {
@@ -31,7 +32,6 @@ class AnNguyen_130_A3
     }
     public static void main (String [] args)
     {
-        
         int nameNo = 0;
         for (int i = 1; i <= Countries.length; i++) {
             Country country = new Country(Countries[i-1], "Name"+i, rand.nextInt(50));
