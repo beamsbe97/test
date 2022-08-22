@@ -18,13 +18,18 @@ class AnNguyen_130_A3
 
     private static String getCountry(ArrayList<MissWorld> alist, double result)
     {
-        for (String name: Countries)
-        {
-            alist.add(new Country(name));
-        }
+        
     }
 
-    private static void displayHeaders(ArrayList<MissWorld> alist)
+    private static void constructAList(ArrayList <SOLS> alist)
+    {
+        for (String name : Countries)
+		{
+			alist.add (new MissWorld (name));
+		}
+    }
+
+    private static void displayInfo(ArrayList<MissWorld> alist)
     {
         System.out.printf("%-15s","Countries");
         
@@ -39,6 +44,7 @@ class AnNguyen_130_A3
         for (MissWorld mw : alist)
             mw.printInfo();
     }
+
     private static void displaySortedList(ArrayList<MissWorld> alist, String event)
     {
         System.out.printf("");
@@ -48,13 +54,14 @@ class AnNguyen_130_A3
     {
         return Math.random() * 100;
     }
+
     public static void main (String [] args)
     {
-        ArrayList <MissWorld> alist = new ArrayList<>();
-        for (int i = 0; i < Countries.length; i++) {
-            
-        }
-
+        
+        ArrayList <MissWorld> alist = new ArrayList<MissWorld>();
+        constructAList(alist);
+        displayInfo(alist);
+    
     }
 }
 
@@ -92,13 +99,6 @@ class Country
     public int getAge()
     {
         return age;
-    }
-
-    public static void construct2D()
-    {
-        for (int i = 0; i < array.length; i++) {
-            
-        }
     }
 }
 
@@ -143,9 +143,17 @@ class MissWorld
 
     }
 
-    private double highest()
+    private double highest(double [] score)
     {
-        
+        double highest = 0;
+        for (int i = 0; i < score.length; i++){
+            if (score[i] > highest)
+            {
+                highest = score[i];
+            }
+        }
+
+        return highest;
     }
 
     private double secondHighest()
@@ -153,9 +161,17 @@ class MissWorld
 
     }
 
-    private double lowest()
+    private double lowest(double [] score)
     {
+        double lowest = 10;
+        for (int i = 0; i < score.length; i++) {
+            if (score[i] < lowest)
+            {
+                lowest = score[i];
+            }  
+        }
 
+        return lowest;
     }
 
     private double secondLowest()
