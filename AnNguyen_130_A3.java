@@ -18,9 +18,27 @@ class AnNguyen_130_A3
 
     private static String getCountry(ArrayList<MissWorld> alist, double result)
     {
-
+        for (String name: Countries)
+        {
+            alist.add(new Country(name));
+        }
     }
 
+    private static void displayHeaders(ArrayList<MissWorld> alist)
+    {
+        System.out.printf("%-15s","Countries");
+        
+        for (int i = 1; i <= MissWorld.SIZE; i++) {
+            System.out.printf("%-6s", "J" + " " + i);
+        }
+
+        System.out.printf("%-6s","c/f");
+        System.out.printf("%-6","Current");
+        System.out.printf("%-6","Total");
+
+        for (MissWorld mw : alist)
+            mw.printInfo();
+    }
     private static void displaySortedList(ArrayList<MissWorld> alist, String event)
     {
         System.out.printf("");
@@ -32,14 +50,8 @@ class AnNguyen_130_A3
     }
     public static void main (String [] args)
     {
-        int nameNo = 0;
-        for (int i = 1; i <= Countries.length; i++) {
-            Country country = new Country(Countries[i-1], "Name"+i, rand.nextInt(50));
-            System.out.printf("%-20s  %-10s  %d%n", country.getName(), country.getMissName(), country.getAge());
-            
-        }
-
-        for (int i = 1; i <= Countries.length; i++){
+        ArrayList <MissWorld> alist = new ArrayList<>();
+        for (int i = 0; i < Countries.length; i++) {
             
         }
 
@@ -106,7 +118,7 @@ class MissWorld
     public MissWorld(Country name, double[] score, double cf)
     {
         this.name = name;
-        this. score = score;
+        this.score = score;
         this.cf = cf;
     }
 
@@ -133,7 +145,7 @@ class MissWorld
 
     private double highest()
     {
-
+        
     }
 
     private double secondHighest()
@@ -163,7 +175,15 @@ class MissWorld
 
     public void printInfo()
     {
-        System.out.printf("");
+        System.out.printf("%-15s", name);
+        
+        for (double s : score) {
+            System.out.printf("%-6f", s);
+        }
+
+        System.out.printf("%-6f", getCarriedForward());
+        System.out.printf("%-6f", finalScore());
+        System.out.printf("%-6f", getTotalScore());
     }
 }
 
