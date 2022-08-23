@@ -8,32 +8,34 @@ class AnNguyen_130_A3
     private final static String[] Countries = {"China", "Thailand", "British Columbia", "South Korea", "Japan", 
                                                "USA", "Australia", "Venezuela", "Russia", "Brazil"};
     //private final static String[] Countries =  new String [10];
-    private final String[] Titles = {"Interview event", "Swimsuit competition event", "Evening gown competition event"};
+    private final static String[] Titles = {"Interview event", "Swimsuit competition event", "Evening gown competition event"};
 
     private static Random rand = new Random();
     private static void getScore(double[] score)
     {
-
+        for (int i = 0; i < score.length; i++) {
+            score [i] =  rand.nextDouble();
+        }
     }
 
     private static String getCountry(ArrayList<MissWorld> alist, double result)
     {
-        
+     
     }
 
-    private static void constructAList(ArrayList <SOLS> alist)
-    {
-        for (String name : Countries)
+    private static void constructAList (ArrayList <Country> alist)
+	{
+		for (String name : Countries)
 		{
-			alist.add (new MissWorld (name));
+			alist.add (new Country (name, "Name1", rand.nextInt(50)));
 		}
-    }
+	}
 
-    private static void displayInfo(ArrayList<MissWorld> alist)
+    /*private static void displayInfo(ArrayList<Country> alist)
     {
         System.out.printf("%-15s","Countries");
         
-        for (int i = 1; i <= MissWorld.SIZE; i++) {
+        for (int i = 1; i <= 10; i++) {
             System.out.printf("%-6s", "J" + " " + i);
         }
 
@@ -43,7 +45,7 @@ class AnNguyen_130_A3
 
         for (MissWorld mw : alist)
             mw.printInfo();
-    }
+    }*/
 
     private static void displaySortedList(ArrayList<MissWorld> alist, String event)
     {
@@ -57,10 +59,19 @@ class AnNguyen_130_A3
 
     public static void main (String [] args)
     {
-        
-        ArrayList <MissWorld> alist = new ArrayList<MissWorld>();
+        double[] score = new double[10];
+
+        getScore(score);
+        ArrayList <Country> alist = new ArrayList <Country> ();
         constructAList(alist);
-        displayInfo(alist);
+
+        
+        for (int i = 0; i < Titles.length; i++) {
+
+            for (Country c : alist)
+            System.out.printf("%s %s %d%n", c.getName(), c.getMissName(), c.getAge());
+        }
+        
     
     }
 }
@@ -74,7 +85,7 @@ class Country
     //Default constructor
     public Country()
     {
-
+        missName = missname + 1;
     }
 
     //Other constructor
@@ -99,6 +110,10 @@ class Country
     public int getAge()
     {
         return age;
+    }
+
+    public void displyCountryInfo()
+    {
     }
 }
 
@@ -138,10 +153,14 @@ class MissWorld
         return fs;
     }
 
+    
+
     private ArrayList<Double> getSortedList()///////////////////////////////////////////////////////////
     {
-
+        
+        Array.sort(score);
     }
+
 
     private double highest(double [] score)
     {
