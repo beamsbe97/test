@@ -57,9 +57,10 @@ class Point{
         this.y = y;
     }
 
-    public String toString(){
-        return String.format("%d, %d", getX(), getY());
-    }
+    public String toString ()
+	{
+		return "Triangle (" + a + ", " + b + ", " + c + ", " + type + ")";
+	}
 }
 
 class Line{
