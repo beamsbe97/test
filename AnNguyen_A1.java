@@ -71,12 +71,13 @@ class AnNguyen_A1{
 }
 
 class Set{
-
+    
+    private ArrayList<ZodiacType> s;
 
     public Sest(){}
 
     public Set(Set otherSet){
-
+        this(otherSet.s);
     }
 
     public boolean isEmpty(){
