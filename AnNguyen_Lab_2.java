@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 class AnNguyen_Lab_2{
     public static void main(String[] args)
     {
@@ -7,14 +9,13 @@ class AnNguyen_Lab_2{
         Point p4 = new Point(7,8);
         Line aline1 = new Line(p1,p2);
         Line aline2 = new Line(p3,p4);
-
-        
+        displayInfo(p1, p2, aline1);
+        displayInfo(p3, p4, aline2);
 
     }
 
     public static void displayInfo(Point p1, Point p2, Line aline){
-        System.out.printf("Given Point");
-        System.out.print();
+       System.out.printf("%s",p1);
 
     }
 
@@ -37,9 +38,9 @@ class Point{
     }
 
     private double distance(Point p){
-
+        return Math.sqrt((this.getX() - p.getX())^2 + (this.getY() - p.getY())^2);
     }
-
+     
     public double getDistance(Point p){
         return p.distance();
     }
@@ -59,7 +60,7 @@ class Point{
 
     public String toString ()
 	{
-		return "Triangle (" + a + ", " + b + ", " + c + ", " + type + ")";
+		return String.format("Given point (%d, %d)%n", x,y);
 	}
 }
 
@@ -80,7 +81,7 @@ class Line{
     }
 
     public double getDistance(){
-        return (p2.getX() - p1.getX())^2 + (p2.getY() - p1.getY())^2; //to find squre root sign
+        return p1.getDistance(p2);
     }
 
     public Point getP1(){
@@ -96,8 +97,9 @@ class Line{
         this.p2 = p2;
     }
 
-    public String toString(){
-        return String.format("%d", getDistance());
-    }
+    public String toString ()
+	{
+		return "Line (" + x + ", " + y + ")";
+	}
 
 }
