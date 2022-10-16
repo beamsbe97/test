@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.ArrayList;
+import java.util.ArrayList;
 
 enum ZodiacInfo{Aries, Taurus, Gemini, Cancer, Leo, Vigro, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces}
 enum ZodiacType{ARI, TAU, GEM, CAN, LEO, VIR, LIB, SCO, SAG, CAP, AQU, PIS}
@@ -66,6 +66,12 @@ class AnNguyen_A1{
     }
 
     public static void main(String[] args){
+        Set set = new Set();
+        for(int i=0; i<=13; i++){
+            set.addElement(ZodiacType.values()[i]);
+        }
+        
+        
         
     }
 }
@@ -74,10 +80,11 @@ class Set{
     
     private ArrayList<ZodiacType> s;
 
-    public Sest(){}
+    public Set(){}
 
     public Set(Set otherSet){
         this(otherSet.s);
+        
     }
 
     public boolean isEmpty(){
@@ -89,11 +96,11 @@ class Set{
     }
 
     public boolean belongTo(ZodiacType element){
-
+        
     }
 
     public void addElement(ZodiacType element){
-
+        s.add(element);
     }
 
     public boolean subset(Set otherSet){
@@ -125,6 +132,8 @@ class Set{
     }
 
     public String getZodiaInfoFormat(){
-
+        String.format("%s", )
     }
 }
+
+
