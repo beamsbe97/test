@@ -1,21 +1,34 @@
 import java.lang.Math;
+import java.util.Random;
 
 class AnNguyen_Lab_2{
-    public static void main(String[] args){
-        Point p1 = new Point(1,2);
-        Point p2 = new Point(3,4);
-        Point p3 = new Point(5,6);
-        Point p4 = new Point(7,8);
-        Line aline1 = new Line(p1,p2);
-        Line aline2 = new Line(p3,p4);
-        displayInfo(p1, p2, aline1);
-        displayInfo(p3, p4, aline2);
+    private static Random ran = new Random();
+    private static final int NO_SETS = 5;
+    public static void main(String[] args)
+    {
+        for (int i = 0; i <= NO_SETS; i++) {
+
+            Point p1 = new Point(getInt(), getInt());
+            Point p2 = new Point(getInt(), getInt());
+            Line aline1 = new Line(p1,p2);
+            System.out.printf("Set %d%n", i);
+            displayInfo(p1, p2, aline1);
+            System.out.println("-----------------------");
+        }
+        
 
     }
 
     public static void displayInfo(Point p1, Point p2, Line aline){
-       System.out.printf("%s",p1);
+       System.out.printf("Given %s%n",p1);
+       System.out.printf("Given %s%n",p2);
+       System.out.printf("%s",aline);
 
+    }
+
+    private static int getInt(){
+        
+        return ran.nextInt(100);
     }
 
 }
@@ -59,7 +72,7 @@ class Point{
 
     public String toString ()
 	{
-		return String.format("Given point (%d, %d)%n", x,y);
+		return String.format("Point (%d, %d)", x,y);
 	}
 }
 
@@ -80,7 +93,8 @@ class Line{
     }
 
     public double getDistance(){
-        return p1.getDistance(p2);
+        return Math.sqrt(Math.pow((p1.getX() - p2.getX()),2) + Math.pow((p1.getY() - p2.getY()),2));
+        
     }
 
     public Point getP1(){
@@ -98,7 +112,8 @@ class Line{
 
     public String toString ()
 	{
-		return "Line (" + x + ", " + y + ")";
+		//return "Line (" + p1 + ", " + p2 + ", " +"distance = "+ getDistance() +")";
+        return String.format("Line( %s, %s, distance = %4f)%n", p1, p2, getDistance());
 	}
 
 }
