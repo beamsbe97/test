@@ -166,7 +166,44 @@ class Rectangle extends TwoD{
 }
 
 class Triangle extends TwoD{
+    public Triangle(){}
 
+    public Triangle(ShapeColor sc, int a, int b, int c){
+        super(sc, a, b, c);
+    }
+
+    public Triangle(Triangle t){
+        this(t.sc, t.a, t.b, t.c);
+    }
+
+    public double area(){
+        double s = (a + b + c) / 2.0;
+		return Math.sqrt (s * (s - a) * (s - b) * (s - c));
+    }
+
+    public double perimeter(){
+        return 1.0*(a + b + c);
+    }
+
+    public int getA(){
+        return a;
+    }
+
+    public int getB(){
+        return b;
+    }
+
+    public int getC(){
+        return c;
+    }
+
+    public void set(ShapeColor sc, int a, int b, int c){
+        super.set(sc, a, b, c);
+    }
+
+    public String toString(){
+        return String.format(null, null);
+    }
 }
 
 class Trapezoid extends TwoD{
@@ -187,7 +224,7 @@ class Trapezoid extends TwoD{
     }
 
     public double perimeter(){
-        return a + b + c + d;
+        return 1.0*(a + b + c + d);
     }
 
     public int getA(){
@@ -211,11 +248,7 @@ class Trapezoid extends TwoD{
     }
 
     public void set(ShapeColor sc, int a, int b, int c, int d, int h){
-        this.sc = sc;
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
+        super.set(sc, a, b, c, d);
         this.h = h;
     }
 
@@ -229,7 +262,7 @@ class Sphere extends ThreeD{
     public Sphere(){}
 
     public Sphere(ShapeColor sc, double a){
-        set(sc, a);
+        super(sc, a);
     }
 
     public Sphere(Sphere s){
