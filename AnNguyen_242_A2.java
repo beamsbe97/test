@@ -1,3 +1,22 @@
+import java.util.ArrayList;
+
+enum ShapeColor{Blue, Yellow, Red, Green, White}
+
+interface ForTwoD{
+    public double perimeter();
+
+    public void recolor(ShapeColor sc);
+}
+
+interface Shape{
+    public double area();
+}
+
+interface ForThreeD{
+    public double volume();
+
+    public void resize(double percentage);
+}
 
 class AnNguyen_242_A2{
 
@@ -6,7 +25,39 @@ class AnNguyen_242_A2{
     }
 }
 
-abstract class TwoD{
+abstract class ThreeD implements ForThreeD, Shape{
+    protected ShapeColor sc;
+    protected double a;
+
+    public ThreeD(){}
+
+    public ThreeD(ShapeColor sc, double a){
+        set(sc, a);
+    }
+
+    public ThreeD(ThreeD td){
+        this(td.sc, td.a);
+    }
+
+    public double getA(){
+        return a;
+    }
+
+    public void set(ShapeColor sc, double a){
+        this.sc = sc;
+        this.a = a;
+    }
+
+    public void resize(double percentage){
+
+    }
+
+    public String toString(){
+        return String.format(null, null);
+    }
+}
+
+abstract class TwoD implements ForTwoD, Shape{
     protected ShapeColor sc;
     protected int a;
     protected int b;
@@ -15,19 +66,19 @@ abstract class TwoD{
 
     public TwoD(){}
 
-    public TwoD(ShapreColor sc, int a){
+    public TwoD(ShapeColor sc, int a){
         set(sc, a);
     }
 
-    public TwoD(ShapreColor sc, int a, int b){
+    public TwoD(ShapeColor sc, int a, int b){
         set(sc, a, b);
     }
 
-    public TwoD(ShapreColor sc, int a, int b, int c){
+    public TwoD(ShapeColor sc, int a, int b, int c){
         set(sc, a, b, c);
     }
 
-    public TwoD(ShapreColor sc, int a, int b, int c, int d){
+    public TwoD(ShapeColor sc, int a, int b, int c, int d){
         set(sc, a, b, c, d);
     }
 
@@ -79,7 +130,7 @@ abstract class TwoD{
         this.d = d;
     }
 
-    public void recolor(ShapreColor sc){
+    public void recolor(ShapeColor sc){
 
     }
 
@@ -109,7 +160,7 @@ class Circle extends TwoD{
 class Rectangle extends TwoD{
     public Rectangle(){}
 
-    public Rectangle(ShapreColor sc, int length, int width){
+    public Rectangle(ShapeColor sc, int length, int width){
         set(sc, length, width);
     }
 }
@@ -123,5 +174,154 @@ class Trapezoid extends TwoD{
 
     public Trapezoid(){}
 
-    public 
+    public Trapezoid(ShapeColor sc, int a, int b, int c, int d, int h){
+        set(sc, a, b, c, d ,h);
+    }
+
+    public Trapezoid(Trapezoid t){
+        this(t.sc, t.a, t.b, t.c, t.d, t.h);
+    }
+
+    public double area(){
+
+    }
+
+    public double perimeter(){
+        return a + b + c + d;
+    }
+
+    public int getA(){
+        return a;
+    }
+
+    public int getB(){
+        return b;
+    }
+
+    public int getC(){
+        return c;
+    }
+
+    public int getD(){
+        return d;
+    }
+
+    public int getHeight(){
+        return h;
+    }
+
+    public void set(ShapeColor sc, int a, int b, int c, int d, int h){
+        this.sc = sc;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+        this.h = h;
+    }
+
+    public String toString(){
+        return String.format(null, null);
+    }
+
 }
+
+class Sphere extends ThreeD{
+    public Sphere(){}
+
+    public Sphere(ShapeColor sc, double a){
+        set(sc, a);
+    }
+
+    public Sphere(Sphere s){
+        this(s.sc, s.a);
+    }
+
+    public double area(){
+        return 0; ///////////////////////////////////////////////////////////////////////
+    }
+
+    public double volume(){
+        return 0;
+    }
+
+    public double getA(){
+        return a;
+    }
+
+    public void set(ShapeColor sc, double a){
+        this.sc = sc;
+        this.a = a;
+    }
+
+    public String toString(){
+        return String.format(null, null);
+    }
+}
+
+class Cube extends ThreeD{
+    public Cube(){}
+
+    public Cube(ShapeColor sc, double a){
+        set(sc, a);
+    }
+
+    public Cube(Cube c){
+        this(c.sc, c.a);
+    }
+
+    public double area(){
+        return 0;
+    }
+
+    public double volume(){
+        return 0;
+    }
+
+    public double getA(){
+        return a;
+    }
+
+    public void set(ShapeColor sc, double a){
+        this.sc = sc;
+        this.a = a;
+    }
+
+    public String toString(){
+        return String.format(null, null);
+    }
+
+}
+
+class Tetrahedron extends ThreeD{
+    public Tetrahedron(){}
+    
+    public Tetrahedron(ShapeColor sc, double a){
+        set(sc, a);
+    }
+
+    public Tetrahedron(Tetrahedron t){
+        this(t.sc, t.a);
+    }
+
+    public double area(){
+        return 0;
+    }
+
+    public double volume(){
+        return 0;
+    }
+
+    public double getA(){
+        return a;
+    }
+
+    public void set(ShapeColor sc, double a){
+        this.sc = sc;
+        this.a = a;
+    }
+
+    public String toString(){
+        return String.format(null, null);
+    }
+}
+
