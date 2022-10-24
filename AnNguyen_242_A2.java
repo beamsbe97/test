@@ -20,7 +20,49 @@ interface ForThreeD{
 
 class AnNguyen_242_A2{
 
+    private static int getInt(){
+        return Math.random()*10 + 1;
+    }
+
+    private static double getDouble(){
+        return Math.random()*10 + 1;
+    }
+
+    private static ShapeColor getColor(){
+        int c = (int)(Math.random()*4);
+        switch(c){
+			case 0: return ShapeColor.Blue;
+			case 1: return "blue";
+			case 2: return "yellow";
+			default: return "white";
+		}
+    }
+
+    private static boolean isTriangle(int a, int b, int c){
+
+    }
+
+    private static TwoD getTwoD(){
+
+    }
+
+    private static void process2DShape(Shape ss){
+
+    }
+
+    private static void process3DShape(Shape ss){
+
+    }
+
+    private static void displayList(ArrayList<Shape> alist){
+        for (int i = 1; i <= alist.size(); i++) {
+            System.out.printf("Shape %d:", i);
+            
+        }
+    }
     public static void main(String[] args){
+        
+
 
     }
 }
