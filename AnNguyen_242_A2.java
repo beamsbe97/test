@@ -25,8 +25,8 @@ class AnNguyen_242_A2 {
 
     private static Random rand = new Random();
 
-    private static int getInt() {
-        return Math.random() * 10 + 1;
+    private static int getInt(int bound) {
+        return rand.nextInt(bound) + 1;
     }
 
     private static double getDouble() {
@@ -34,24 +34,26 @@ class AnNguyen_242_A2 {
     }
 
     private static ShapeColor getColor() {
-        int c = (int) (Math.random() * 4);
+        int c = (int) (Math.random() * 5);
         switch (c) {
             case 0:
                 return ShapeColor.Blue;
             case 1:
-                return "blue";
+                return ShapeColor.Yellow;
             case 2:
-                return "yellow";
+                return ShapeColor.Red;
+            case 3:
+                return ShapeColor.Green;
             default:
-                return "white";
+                return ShapeColor.White;
         }
     }
 
     private static boolean isTriangle(int a, int b, int c) {
         if (a + b <= c || a + c <= b || b + c <= a)
-            return 0;
+            return false;
         else
-            return 1;
+            return true;
     }
 
     private static TwoD getTwoD() {
@@ -72,19 +74,12 @@ class AnNguyen_242_A2 {
 
     private static void displayList(ArrayList<Shape> alist) {
         for (Shape shape: alist) {
-            //System.out.printf("Shape %d:", i);
-            System.out.printf("%s", shape);
+            System.out.println(shape);
 
         }
     }
 
-    private static void constructAList(ArrayList<Shape> alist){
-
-    }
-
-    public static void main(String[] args) {
-        
-        ArrayList<Shape> aList = new ArrayList<Shape>();
+    private static void constructAList(ArrayList<Shape> aList){
         int k = rand.nextInt(3);
         do {
             System.out.println(k);
@@ -93,19 +88,21 @@ class AnNguyen_242_A2 {
                 int twoD = rand.nextInt(3);
                 switch (twoD) {
                     case 0:
-                        Circle c0 = new Circle();
+                        Circle c0 = new Circle(getColor(), getInt(10));
                         aList.add(c0);
                         break;
                     case 1:
-                        Rectangle r0 = new Rectangle();
+                        Rectangle r0 = new Rectangle(getColor(), getInt(10), getInt(10));
                         aList.add(r0);
                         break;
                     case 2:
-                        Triangle t0 = new Triangle();
-                        aList.add(t0);
+                        Triangle t0 = new Triangle(getColor(), getInt(10), getInt(10), getInt(10));
+                        if(isTriangle(t0.getA(), t0.getB(), t0.getC())){
+                            aList.add(t0);
+                        }
                         break;
                     case 3:
-                        Trapezoid tz0 = new Trapezoid();
+                        Trapezoid tz0 = new Trapezoid(getColor(), getInt(10), getInt(10), getInt(10), getInt(10), getInt(10));
                         aList.add(tz0);
                         break;
                     default:
@@ -118,15 +115,15 @@ class AnNguyen_242_A2 {
                 int threeD = rand.nextInt(2);
                 switch (threeD) {
                     case 0:
-                        Sphere s0 = new Sphere();
+                        Sphere s0 = new Sphere(getColor(), getDouble());
                         aList.add(s0);
                         break;
                     case 1:
-                        Cube c0 = new Cube();
+                        Cube c0 = new Cube(getColor(), getDouble());
                         aList.add(c0);
                         break;
                     case 2:
-                        Tetrahedron t0 = new Tetrahedron();
+                        Tetrahedron t0 = new Tetrahedron(getColor(), getDouble());
                         aList.add(t0);
                         break;
                     default:
@@ -139,6 +136,13 @@ class AnNguyen_242_A2 {
 
         while(k != 0);
 
+
+    }
+
+    public static void main(String[] args) {
+        
+        ArrayList<Shape> aList = new ArrayList<Shape>();
+    
         constructAList(aList);
         displayList(aList);
 
@@ -149,6 +153,7 @@ class AnNguyen_242_A2 {
 abstract class ThreeD implements ForThreeD, Shape {
     protected ShapeColor sc;
     protected double a;
+    private double percentage = Math.random()*1.0 + 0.1;
 
     public ThreeD() {
     }
@@ -171,11 +176,12 @@ abstract class ThreeD implements ForThreeD, Shape {
     }
 
     public void resize(double percentage) {
-
+        a = a*percentage;
     }
 
     public String toString() {
-        return String.format(null, null);
+        return String.format("Surface area = %.3f%n" + "Volume = %.3f%n" 
+                            + "Size reduced by %.1f: %s", area(), volume(), percentage, );
     }
 }
 
@@ -295,12 +301,17 @@ class Circle extends TwoD {
         super.set(sc, radius);
     }
 
+    @Override
+    public String toString(){
+        return String.format("Circle (2D (%s, %d)%n" + "%s%n", sc, radius, super.toString());
+    }
+
 }
 
 class Rectangle extends TwoD {
 
-    private double length;
-    private double width;
+    private int length;
+    private int width;
 
     public Rectangle() {
     }
@@ -331,6 +342,11 @@ class Rectangle extends TwoD {
 
     public void set(ShapeColor sc, int length, int width){
         super.set(sc, length, width);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Rectangle (2D (%s, %d, %d)%n" + "%s%n", sc, length, width, super.toString());
     }
 }
 
@@ -373,7 +389,7 @@ class Triangle extends TwoD {
 
     @Override
     public String toString() {
-        return String.format("Triangle (2D (%s, %d, %d, %d)", sc, a, b, c);
+        return String.format("Triangle (2D (%s, %d, %d, %d)%n" + "%s%n", sc, a, b, c, super.toString());
     }
 }
 
@@ -443,12 +459,13 @@ class Sphere extends ThreeD {
         this(s.sc, s.a);
     }
 
+    @Override
     public double area() {
-        return 0; ///////////////////////////////////////////////////////////////////////
+        return 4.0 * Math.PI * (a*a); 
     }
 
     public double volume() {
-        return 0;
+        return (4/3) * Math.PI * a*a*a;
     }
 
     public double getA() {
@@ -460,8 +477,9 @@ class Sphere extends ThreeD {
         this.a = a;
     }
 
+    @Override
     public String toString() {
-        return String.format(null, null);
+        return String.format("Sphere (3D (%s, %.3f))%n" + "%s%n", sc, a, super.toString());
     }
 }
 
@@ -478,11 +496,11 @@ class Cube extends ThreeD {
     }
 
     public double area() {
-        return 0;
+        return a*a;
     }
 
     public double volume() {
-        return 0;
+        return a*a*a;
     }
 
     public double getA() {
@@ -495,7 +513,7 @@ class Cube extends ThreeD {
     }
 
     public String toString() {
-        return String.format("%s %s", sc, a);
+        return String.format("Cube (3D (%s, %.3f))%n" + "%s%n", sc, a, super.toString());
     }
 
 }
@@ -513,7 +531,9 @@ class Tetrahedron extends ThreeD {
     }
 
     public double area() {
-        return 0;
+        double s = (3*a) / 2.0;
+        double triArea =  Math.sqrt(s * (s - a) * 3);
+        return 4.0*a + 3*triArea;
     }
 
     public double volume() {
@@ -530,6 +550,6 @@ class Tetrahedron extends ThreeD {
     }
 
     public String toString() {
-        return String.format(null, null);
+        return String.format("Tetrahedron (3D (%s, %.3f))%n" + "%s%n", sc, a, super.toString());
     }
 }
