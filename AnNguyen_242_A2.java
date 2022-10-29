@@ -71,8 +71,9 @@ class AnNguyen_242_A2 {
     }
 
     private static void displayList(ArrayList<Shape> alist) {
-        for (int i = 1; i <= alist.size(); i++) {
-            System.out.printf("Shape %d:", i);
+        for (Shape shape: alist) {
+            //System.out.printf("Shape %d:", i);
+            System.out.printf("%s", shape);
 
         }
     }
@@ -137,6 +138,9 @@ class AnNguyen_242_A2 {
         }
 
         while(k != 0);
+
+        constructAList(aList);
+        displayList(aList);
 
     }
 
@@ -262,6 +266,8 @@ abstract class TwoD implements ForTwoD, Shape {
 }
 
 class Circle extends TwoD {
+    private int radius; //////////////////////////////////////////////////////
+
     public Circle() {
     }
 
@@ -273,6 +279,18 @@ class Circle extends TwoD {
         this(c.radius);
     }
 
+    public int getRadius(){
+        return radius;
+    }
+
+    public double perimeter(){
+        return Math.PI * 2 * getRadius();
+    }
+
+    public double area(){
+        return Math.PI * getRadius() * getRadius();
+    }
+
     public void set(ShapeColor sc, int radius) {
         super.set(sc, radius);
     }
@@ -280,11 +298,39 @@ class Circle extends TwoD {
 }
 
 class Rectangle extends TwoD {
+
+    private double length;
+    private double width;
+
     public Rectangle() {
     }
 
     public Rectangle(ShapeColor sc, int length, int width) {
         set(sc, length, width);
+    }
+
+    public Rectangle(Rectangle r){
+        this(r.sc, r.length, r.width);
+    }
+
+    public double area(){
+        return getLength() * getWidth();
+    }
+
+    public double perimeter(){
+        return 2*getLength() + 2*getWidth();
+    }
+
+    public int getLength(){
+        return length;
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+    public void set(ShapeColor sc, int length, int width){
+        super.set(sc, length, width);
     }
 }
 
@@ -449,7 +495,7 @@ class Cube extends ThreeD {
     }
 
     public String toString() {
-        return String.format(null, null);
+        return String.format("%s %s", sc, a);
     }
 
 }
